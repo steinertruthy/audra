@@ -31,7 +31,7 @@
 
   --container: 1180px;
   --gutter: clamp(20px, 4vw, 40px);
-  --section: clamp(88px, 12vw, 152px);
+  --section: clamp(72px, 9vw, 120px);
 
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -237,6 +237,8 @@ ul, ol { margin: 0; padding: 0; }
 /* ---------- Generic section ---------- */
 
 .section { padding: var(--section) 0; position: relative; }
+/* Consecutive sections share one gap instead of stacking bottom + top padding. */
+.section + .section { padding-top: 0; }
 .section-head { max-width: 760px; margin-bottom: clamp(44px, 6vw, 72px); }
 .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
 .eyebrow {
@@ -372,7 +374,7 @@ ul, ol { margin: 0; padding: 0; }
 }
 
 .tech {
-  padding: 48px 0 0;
+  padding: 40px 0 0;
   text-align: center;
 }
 .tech p { font-size: 13px; color: var(--text-3); letter-spacing: 0.02em; }
@@ -432,7 +434,7 @@ ul, ol { margin: 0; padding: 0; }
   gap: clamp(36px, 6vw, 88px);
   align-items: center;
 }
-.feature + .feature { margin-top: clamp(96px, 13vw, 168px); }
+.feature + .feature { margin-top: clamp(72px, 9vw, 120px); }
 .feature.reverse { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr); }
 .feature.reverse .feature-copy { order: 2; }
 .feature-copy .lead { margin-top: 18px; font-size: 17.5px; }
