@@ -1,0 +1,12 @@
+{
+  "name": "Audra",
+  "title": "Audra — Transcreva, resuma e edite vídeos no seu Mac",
+  "description": "Audra é um app gratuito para macOS que transcreve vídeos no próprio Mac, gera resumos com IA no dispositivo e permite editar o vídeo com timeline ou pelo próprio texto.",
+  "url": "https://steinertruthy.github.io/audra",
+  "repo": "https://github.com/steinertruthy/audra",
+  "repoSlug": "steinertruthy/audra",
+  "assetName": "Audra.dmg",
+  "minimumOS": "macOS 26 Tahoe",
+  "license": "MIT",
+  "author": "steinertruthy"
+}

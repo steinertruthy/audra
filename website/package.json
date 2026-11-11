@@ -1,0 +1,13 @@
+{
+  "name": "audra-website",
+  "private": true,
+  "description": "Site oficial do Audra (estático, sem dependências).",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node check.mjs",
+    "dev": "node build.mjs && node serve.mjs",
+    "preview": "node serve.mjs"
+  }
+}

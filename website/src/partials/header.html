@@ -1,0 +1,24 @@
+<header class="nav" data-nav>
+  <div class="container nav-inner">
+    <a class="brand" href="{{site.base}}" aria-label="Audra — página inicial">
+      <img src="{{site.base}}assets/img/app-icon-64.png" width="28" height="28" alt="">
+      Audra
+    </a>
+    <nav aria-label="Principal">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="{{site.base}}#visao-geral">Visão geral</a></li>
+        <li><a href="{{site.base}}#funcionalidades">Funcionalidades</a></li>
+        <li><a href="{{site.base}}#como-funciona">Como funciona</a></li>
+        <li><a href="{{site.base}}#exemplos">Exemplos de uso</a></li>
+        <li><a href="{{site.base}}#download">Download</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="nav-github" href="{{site.repo}}" rel="noopener" aria-label="Código-fonte no GitHub">{{icon:github}}</a>
+      <a class="btn btn-primary btn-small" href="{{site.base}}#download">{{icon:download}} Baixar</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu" data-nav-toggle>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>

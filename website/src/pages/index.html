@@ -1,0 +1,530 @@
+<!-- Hero -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container">
+    <div class="hero-inner">
+      <a class="pill" href="{{site.base}}versoes/" data-reveal>
+        <span class="pill-tag" data-release-version>v{{release.version}}</span>
+        <span class="pill-long">Transcrição, resumo e edição em um só app</span>
+        <span class="pill-short">Veja as novidades</span>
+        {{icon:chevronRight}}
+      </a>
+      <h1 id="hero-title" class="gradient-text" data-reveal style="--delay:.06s">Do vídeo ao texto.<br>Do texto ao corte.</h1>
+      <p class="lead" data-reveal style="--delay:.12s">O Audra transcreve seus vídeos, gera resumos com IA e permite editá-los pela timeline ou pelo próprio texto, tudo processado no seu Mac.</p>
+      <div class="hero-actions" data-reveal style="--delay:.18s">
+        <a class="btn btn-primary btn-large" href="#download" data-download-cta>{{icon:apple}} Baixar para macOS</a>
+        <a class="btn btn-secondary btn-large" href="#funcionalidades">Conhecer funcionalidades</a>
+      </div>
+      <div class="hero-meta" data-reveal style="--delay:.24s">
+        <span>{{icon:checkCircle}} Gratuito e de código aberto</span>
+        <span>{{icon:laptop}} {{site.minimumOS}} · Apple Silicon</span>
+        <span>{{icon:shield}} Processamento local</span>
+      </div>
+    </div>
+    <div class="hero-visual" data-hero-visual>
+      <div class="screen">
+        <picture>
+          <source type="image/avif" srcset="{{site.base}}assets/img/screens/editor-1440.avif 1440w, {{site.base}}assets/img/screens/editor-2880.avif 2880w" sizes="(max-width: 1280px) 100vw, 1240px">
+          <img src="{{site.base}}assets/img/screens/editor-1440.jpg" width="1440" height="884" fetchpriority="high" decoding="async"
+               alt="Editor do Audra: transcrição sincronizada à esquerda, vídeo com legenda no centro, propriedades à direita e timeline com faixas de legendas, texto, vídeo e áudio.">
+        </picture>
+      </div>
+      <div class="hero-fade"></div>
+    </div>
+  </div>
+  <div class="tech container">
+    <p>Feito com as tecnologias nativas do macOS</p>
+    <ul>
+      <li>SpeechAnalyzer</li>
+      <li>Apple Intelligence</li>
+      <li>AVFoundation</li>
+      <li>Core Image + Metal</li>
+      <li>VideoToolbox</li>
+      <li>SwiftUI</li>
+    </ul>
+  </div>
+</section>
+
+<!-- O que é -->
+<section class="section" id="visao-geral" aria-labelledby="visao-title">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">O que é o Audra</p>
+      <h2 class="h2" id="visao-title">Um estúdio de vídeo e texto que cabe no seu Mac.</h2>
+      <p class="lead">O Audra junta em um só lugar o que normalmente exige vários aplicativos: transformar fala em texto, entender rapidamente o que foi dito e editar o vídeo. Você importa o arquivo, e o resto acontece no seu computador — sem contas, sem uploads e sem complicação.</p>
+    </div>
+    <div class="overview-grid">
+      <div class="capability" data-reveal>
+        <span class="icon">{{icon:waveform}}</span>
+        <h3>Transcrição de áudio e vídeo</h3>
+        <p>Texto com marcação de tempo, gerado pelo reconhecimento de fala do próprio macOS.</p>
+      </div>
+      <div class="capability" data-reveal style="--delay:.05s">
+        <span class="icon">{{icon:sparkles}}</span>
+        <h3>Resumos inteligentes</h3>
+        <p>Visão geral, tópicos, decisões e próximos passos, criados pelo Apple Intelligence no dispositivo.</p>
+      </div>
+      <div class="capability" data-reveal style="--delay:.1s">
+        <span class="icon">{{icon:film}}</span>
+        <h3>Edição com timeline</h3>
+        <p>Múltiplas faixas de vídeo, áudio e texto, com miniaturas, formas de onda e ímã de alinhamento.</p>
+      </div>
+      <div class="capability" data-reveal style="--delay:.15s">
+        <span class="icon">{{icon:scissors}}</span>
+        <h3>Corte pelo texto</h3>
+        <p>Selecione palavras na transcrição e remova o trecho do vídeo. A timeline se ajusta sozinha.</p>
+      </div>
+      <div class="capability" data-reveal>
+        <span class="icon">{{icon:captions}}</span>
+        <h3>Legendas automáticas</h3>
+        <p>Legendas criadas a partir da transcrição e sincronizadas com os cortes que você fez.</p>
+      </div>
+      <div class="capability" data-reveal style="--delay:.05s">
+        <span class="icon">{{icon:speaker}}</span>
+        <h3>Áudio sob controle</h3>
+        <p>Volume, fades, trilhas sonoras, separação e troca do áudio original, remoção de pausas.</p>
+      </div>
+      <div class="capability" data-reveal style="--delay:.1s">
+        <span class="icon">{{icon:text}}</span>
+        <h3>Títulos e textos</h3>
+        <p>Títulos, terço inferior e textos animados, com fonte, cor, fundo e posição ajustáveis.</p>
+      </div>
+      <div class="capability" data-reveal style="--delay:.15s">
+        <span class="icon">{{icon:export}}</span>
+        <h3>Exportação por hardware</h3>
+        <p>MP4 ou MOV em H.264 ou HEVC, até 4K, além de transcrições em TXT, Markdown e SRT.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Funcionalidades -->
+<section class="section" id="funcionalidades" aria-labelledby="func-title">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">Funcionalidades</p>
+      <h2 class="h2" id="func-title">Tudo o que você precisa entre o arquivo bruto e o vídeo final.</h2>
+    </div>
+
+    <article class="feature" id="transcricao">
+      <div class="feature-copy" data-reveal>
+        <p class="feature-kicker"><span class="icon">{{icon:waveform}}</span> Transcrição</p>
+        <h3 class="h3">Cada palavra no lugar certo do vídeo.</h3>
+        <p class="lead">A transcrição acompanha a reprodução e destaca o trecho falado. Clique em qualquer frase para ir direto àquele momento.</p>
+        <ul class="checks">
+          <li>{{icon:check}}<span><strong>Detecção automática de idioma</strong>, com prioridade para o português do Brasil, ou escolha o idioma manualmente.</span></li>
+          <li>{{icon:check}}<span><strong>Marcação de tempo por palavra</strong>, busca no texto e correção manual de qualquer trecho.</span></li>
+          <li>{{icon:check}}<span><strong>Busca em toda a biblioteca</strong>: encontre um assunto em todas as suas transcrições de uma vez.</span></li>
+          <li>{{icon:check}}<span><strong>Exporte em TXT, Markdown ou SRT</strong>, ou copie com um atalho.</span></li>
+        </ul>
+      </div>
+      <div class="frame" data-reveal style="--delay:.1s">
+        <div class="screen">
+          <picture>
+            <source type="image/avif" srcset="{{site.base}}assets/img/screens/results-1440.avif 1440w, {{site.base}}assets/img/screens/results-2880.avif 2880w" sizes="(max-width: 900px) 100vw, 680px">
+            <img src="{{site.base}}assets/img/screens/results-1440.jpg" width="1440" height="884" loading="lazy" decoding="async"
+                 alt="Tela de transcrição: vídeo à esquerda, resumo abaixo e a transcrição com marcações de tempo à direita, com o trecho atual destacado.">
+          </picture>
+        </div>
+      </div>
+    </article>
+
+    <article class="feature reverse" id="resumos">
+      <div class="feature-copy" data-reveal>
+        <p class="feature-kicker"><span class="icon">{{icon:sparkles}}</span> Resumos com IA</p>
+        <h3 class="h3">Entenda uma hora de gravação em um minuto.</h3>
+        <p class="lead">Ao terminar a transcrição, o Audra gera um resumo estruturado e fiel ao conteúdo, sem inventar o que não foi dito.</p>
+        <ul class="checks">
+          <li>{{icon:check}}<span><strong>Visão geral, principais tópicos, pontos importantes, decisões e próximos passos</strong>, além de capítulos clicáveis em vídeos longos.</span></li>
+          <li>{{icon:check}}<span><strong>Apple Intelligence no próprio Mac</strong>, com três níveis de detalhe: conciso, padrão ou detalhado.</span></li>
+          <li>{{icon:check}}<span><strong>Exporte o resumo em Markdown ou PDF.</strong> Todo resumo é identificado como gerado por IA.</span></li>
+        </ul>
+        <p class="feature-note">Opcional: é possível usar o Claude, da Anthropic, com sua própria chave de API. Nesse caso, somente o texto da transcrição é enviado, e apenas depois que você autorizar.</p>
+      </div>
+      <div class="frame" data-reveal style="--delay:.1s">
+        <div class="screen">
+          <picture>
+            <source type="image/avif" srcset="{{site.base}}assets/img/screens/summary-1440.avif 1440w, {{site.base}}assets/img/screens/summary-2880.avif 2880w" sizes="(max-width: 900px) 100vw, 680px">
+            <img src="{{site.base}}assets/img/screens/summary-1440.jpg" width="1440" height="884" loading="lazy" decoding="async"
+                 alt="Resumo gerado pelo Audra com visão geral, principais tópicos, pontos importantes e próximos passos.">
+          </picture>
+        </div>
+      </div>
+    </article>
+
+    <article class="feature" id="editor">
+      <div class="feature-copy" data-reveal>
+        <p class="feature-kicker"><span class="icon">{{icon:film}}</span> Editor de vídeo</p>
+        <h3 class="h3">Uma timeline de verdade, rápida até em vídeos longos.</h3>
+        <p class="lead">Organize vídeos, músicas e textos em várias faixas. O que você vê na pré-visualização é exatamente o que será exportado.</p>
+        <ul class="checks">
+          <li>{{icon:check}}<span><strong>Divida, apare, mova e duplique</strong> clipes, com ímã de alinhamento, marcadores e histórico para desfazer.</span></li>
+          <li>{{icon:check}}<span><strong>Velocidade de 0,25× a 4×</strong>, escala, posição, rotação, recorte e opacidade.</span></li>
+          <li>{{icon:check}}<span><strong>Transições</strong>: dissolver, mergulho no preto ou no branco, deslizar e cortina, além de fades.</span></li>
+          <li>{{icon:check}}<span><strong>Projetos salvos automaticamente</strong>, sem alterar os arquivos originais.</span></li>
+        </ul>
+      </div>
+      <div class="frame" data-reveal style="--delay:.1s">
+        <div class="screen">
+          <picture>
+            <source type="image/avif" srcset="{{site.base}}assets/img/screens/editor-ai-1440.avif 1440w, {{site.base}}assets/img/screens/editor-ai-2880.avif 2880w" sizes="(max-width: 900px) 100vw, 680px">
+            <img src="{{site.base}}assets/img/screens/editor-ai-1440.jpg" width="1440" height="884" loading="lazy" decoding="async"
+                 alt="Editor com o resumo no painel de IA, o vídeo com legenda no monitor, propriedades do clipe e a timeline com miniaturas e forma de onda.">
+          </picture>
+        </div>
+      </div>
+    </article>
+
+    <article class="feature reverse" id="editar-pelo-texto">
+      <div class="feature-copy" data-reveal>
+        <p class="feature-kicker"><span class="icon">{{icon:scissors}}</span> Edição pelo texto</p>
+        <h3 class="h3">Apague uma frase e ela some do vídeo.</h3>
+        <p class="lead">Selecione palavras na transcrição e escolha “Remover trecho”. O Audra localiza o trecho, corta áudio e vídeo juntos e fecha o espaço em todas as faixas.</p>
+        <ul class="checks">
+          <li>{{icon:check}}<span><strong>Cortes ajustados ao silêncio</strong> entre as palavras, usando a forma de onda do áudio.</span></li>
+          <li>{{icon:check}}<span><strong>Legendas automáticas</strong> que respeitam os cortes e nunca mostram palavras removidas.</span></li>
+          <li>{{icon:check}}<span><strong>Silenciar, criar legenda ou localizar na timeline</strong> a partir de qualquer trecho selecionado.</span></li>
+          <li>{{icon:check}}<span><strong>Nada é destrutivo</strong>: a transcrição original é preservada e tudo pode ser desfeito.</span></li>
+        </ul>
+      </div>
+      <div class="frame" data-reveal style="--delay:.1s">
+        <div class="screen">
+          <picture>
+            <source type="image/avif" srcset="{{site.base}}assets/img/screens/editor-1440.avif 1440w, {{site.base}}assets/img/screens/editor-2880.avif 2880w" sizes="(max-width: 900px) 100vw, 680px">
+            <img src="{{site.base}}assets/img/screens/editor-1440.jpg" width="1440" height="884" loading="lazy" decoding="async"
+                 alt="Palavras selecionadas na transcrição do editor, com o botão Remover trecho, e a faixa de legendas na timeline.">
+          </picture>
+        </div>
+      </div>
+    </article>
+
+    <div class="feature" style="margin-top:clamp(96px,13vw,168px)">
+      <div class="feature-copy" data-reveal>
+        <p class="feature-kicker"><span class="icon">{{icon:layers}}</span> Áudio, textos e exportação</p>
+        <h3 class="h3">Acabamento profissional, sem sair do app.</h3>
+        <p class="lead">Ajuste o som, adicione títulos e exporte com codificação por hardware, com progresso real e opção de cancelar.</p>
+        <div class="mini-grid" style="margin-top:28px">
+          <div class="mini-card">
+            <h3><span class="icon">{{icon:speaker}}</span> Áudio</h3>
+            <ul>
+              <li>Volume, silenciar e fades</li>
+              <li>Separar ou substituir o áudio original</li>
+              <li>Trilhas sonoras em faixas próprias</li>
+              <li>Remoção automática de pausas longas</li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <h3><span class="icon">{{icon:text}}</span> Textos</h3>
+            <ul>
+              <li>Título, texto, terço inferior e legenda</li>
+              <li>Fontes, cores, sombra e caixa de fundo</li>
+              <li>Animações de entrada e saída</li>
+              <li>Formatos 16:9, 9:16, 1:1 e 4:5</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div data-reveal style="--delay:.1s">
+        <div class="frame frame-narrow">
+          <div class="screen">
+            <picture>
+              <source type="image/avif" srcset="{{site.base}}assets/img/screens/export-sheet-1440.avif">
+              <img src="{{site.base}}assets/img/screens/export-sheet-1440.jpg" width="960" height="938" loading="lazy" decoding="async"
+                   alt="Janela de exportação com formato MP4, codificação H.264, resolução, qualidade, quadros por segundo e opção de incluir áudio.">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="band" style="margin-top:clamp(96px,13vw,168px)" id="privacidade-local">
+      <div data-reveal>
+        <p class="eyebrow">Privacidade por padrão</p>
+        <h2 class="h2">Seus vídeos não saem do seu Mac.</h2>
+        <p class="lead">Transcrição, resumo, edição e exportação acontecem no seu computador. O Audra não tem contas, não coleta dados de uso e não envia seus arquivos para servidores.</p>
+      </div>
+      <div class="band-facts">
+        <div class="fact" data-reveal>
+          <span class="icon">{{icon:cpu}}</span>
+          <div><h3>Processamento local</h3><p>Reconhecimento de fala e resumos rodam no dispositivo, usando o Neural Engine dos Macs com Apple Silicon.</p></div>
+        </div>
+        <div class="fact" data-reveal style="--delay:.06s">
+          <span class="icon">{{icon:wifiOff}}</span>
+          <div><h3>Funciona offline</h3><p>A internet só é necessária para baixar, uma única vez, o modelo de fala de cada idioma pelo macOS.</p></div>
+        </div>
+        <div class="fact" data-reveal style="--delay:.12s">
+          <span class="icon">{{icon:shield}}</span>
+          <div><h3>Originais intactos</h3><p>O Audra nunca altera nem copia seus vídeos. Edições são salvas como projetos, à parte.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Como funciona -->
+<section class="section" id="como-funciona" aria-labelledby="como-title">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">Como funciona</p>
+      <h2 class="h2" id="como-title">Do arquivo ao vídeo pronto em cinco passos.</h2>
+    </div>
+    <ol class="steps">
+      <li class="step" data-reveal>
+        <div class="step-media">
+          <div class="dmg" aria-hidden="true">
+            <img src="{{site.base}}assets/img/app-icon-256.png" width="64" height="64" alt="">
+            {{icon:arrowRight}}
+            <span class="folder"></span>
+          </div>
+        </div>
+        <div class="step-body">
+          <h3>Baixe e instale</h3>
+          <p>Abra o arquivo .dmg e arraste o Audra para a pasta Aplicativos.</p>
+        </div>
+      </li>
+      <li class="step" data-reveal style="--delay:.06s">
+        <div class="step-media" style="--zoom:1.9;--origin:18% 30%">
+          <picture>
+            <source type="image/avif" srcset="{{site.base}}assets/img/screens/home-1440.avif">
+            <img src="{{site.base}}assets/img/screens/home-1440.jpg" width="1440" height="884" loading="lazy" decoding="async" alt="Tela inicial do Audra com as opções Transcrever vídeo e Novo projeto.">
+          </picture>
+        </div>
+        <div class="step-body">
+          <h3>Importe um vídeo</h3>
+          <p>Arraste o arquivo para a janela ou escolha “Transcrever vídeo”. MP4, MOV, M4V e áudios são aceitos.</p>
+        </div>
+      </li>
+      <li class="step" data-reveal style="--delay:.12s">
+        <div class="step-media" style="--zoom:2.1;--origin:0% 62%">
+          <picture>
+            <source type="image/avif" srcset="{{site.base}}assets/img/screens/summary-1440.avif">
+            <img src="{{site.base}}assets/img/screens/summary-1440.jpg" width="1440" height="884" loading="lazy" decoding="async" alt="Resumo estruturado gerado após a transcrição.">
+          </picture>
+        </div>
+        <div class="step-body">
+          <h3>Transcreva e resuma</h3>
+          <p>O idioma é detectado, a fala vira texto e o resumo é criado automaticamente.</p>
+        </div>
+      </li>
+      <li class="step" data-reveal style="--delay:.18s">
+        <div class="step-media" style="--zoom:1.7;--origin:50% 40%">
+          <picture>
+            <source type="image/avif" srcset="{{site.base}}assets/img/screens/editor-text-1440.avif">
+            <img src="{{site.base}}assets/img/screens/editor-text-1440.jpg" width="1440" height="884" loading="lazy" decoding="async" alt="Editor com um título selecionado e suas propriedades de texto.">
+          </picture>
+        </div>
+        <div class="step-body">
+          <h3>Edite e ajuste</h3>
+          <p>Toque em “Editar vídeo”: corte pela transcrição ou pela timeline, adicione legendas e títulos.</p>
+        </div>
+      </li>
+      <li class="step" data-reveal style="--delay:.24s">
+        <div class="step-media contain">
+          <picture>
+            <source type="image/avif" srcset="{{site.base}}assets/img/screens/export-sheet-1440.avif">
+            <img src="{{site.base}}assets/img/screens/export-sheet-1440.jpg" width="960" height="938" loading="lazy" decoding="async" alt="Opções de exportação do vídeo.">
+          </picture>
+        </div>
+        <div class="step-body">
+          <h3>Exporte o resultado</h3>
+          <p>Vídeo em MP4 ou MOV, áudio em M4A, transcrição em TXT, Markdown ou SRT e resumo em PDF.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- Exemplos -->
+<section class="section" id="exemplos" aria-labelledby="exemplos-title">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">Exemplos de uso</p>
+      <h2 class="h2" id="exemplos-title">Feito para quem trabalha com vídeo e palavra.</h2>
+      <p class="lead">Algumas situações em que os recursos do Audra fazem diferença no dia a dia.</p>
+    </div>
+    <div class="cases">
+      <article class="case" data-reveal>
+        <span class="icon">{{icon:mic}}</span>
+        <h3>Entrevistas</h3>
+        <p>Transforme horas de conversa em texto pesquisável e encontre a citação certa em segundos.</p>
+        <ul>
+          <li>{{icon:check}} Transcrição com tempo por palavra</li>
+          <li>{{icon:check}} Exportação em TXT ou Markdown</li>
+        </ul>
+      </article>
+      <article class="case" data-reveal style="--delay:.05s">
+        <span class="icon">{{icon:school}}</span>
+        <h3>Aulas e palestras</h3>
+        <p>Revise o conteúdo pelo resumo, com tópicos, pontos importantes e tarefas mencionadas.</p>
+        <ul>
+          <li>{{icon:check}} Resumo com próximos passos</li>
+          <li>{{icon:check}} Resumo em PDF para estudar</li>
+        </ul>
+      </article>
+      <article class="case" data-reveal style="--delay:.1s">
+        <span class="icon">{{icon:phone}}</span>
+        <h3>Vídeos para redes sociais</h3>
+        <p>Recorte o melhor trecho, mude para o formato vertical e publique com legendas.</p>
+        <ul>
+          <li>{{icon:check}} Formatos 9:16, 1:1 e 4:5</li>
+          <li>{{icon:check}} Legendas automáticas</li>
+        </ul>
+      </article>
+      <article class="case" data-reveal>
+        <span class="icon">{{icon:folder}}</span>
+        <h3>Organização de gravações</h3>
+        <p>Mantenha uma biblioteca de reuniões e gravações em que tudo o que foi dito pode ser buscado.</p>
+        <ul>
+          <li>{{icon:check}} Busca em todas as transcrições</li>
+          <li>{{icon:check}} Agrupamento por data</li>
+        </ul>
+      </article>
+      <article class="case" data-reveal style="--delay:.05s">
+        <span class="icon">{{icon:clapper}}</span>
+        <h3>Produção de conteúdo</h3>
+        <p>Edite podcasts em vídeo e tutoriais cortando pelo texto, com trilha sonora e títulos.</p>
+        <ul>
+          <li>{{icon:check}} Remoção de pausas longas</li>
+          <li>{{icon:check}} Títulos e terço inferior animados</li>
+        </ul>
+      </article>
+      <article class="case" data-reveal style="--delay:.1s">
+        <span class="icon">{{icon:eye}}</span>
+        <h3>Revisão de vídeos</h3>
+        <p>Identifique trechos importantes, decisões e capítulos sem assistir a tudo de novo.</p>
+        <ul>
+          <li>{{icon:check}} Capítulos como marcadores</li>
+          <li>{{icon:check}} Localizar trechos na timeline</li>
+        </ul>
+      </article>
+    </div>
+    <p class="cases-note">As imagens desta página são capturas reais do Audra, feitas com um vídeo de demonstração criado para este site.</p>
+  </div>
+</section>
+
+<!-- Download -->
+<section class="section" id="download" aria-labelledby="download-title">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">Download</p>
+      <h2 class="h2" id="download-title">Baixe o Audra para macOS.</h2>
+      <p class="lead">Gratuito, sem cadastro e de código aberto.</p>
+    </div>
+    <div class="download" data-release data-state="{{release.state}}">
+      <div class="download-card" data-reveal>
+        <div class="download-head">
+          <img src="{{site.base}}assets/img/app-icon-256.png" width="76" height="76" alt="Ícone do Audra">
+          <div>
+            <h3>Audra <span data-release-version>{{release.version}}</span></h3>
+            <p>Para Macs com Apple Silicon</p>
+          </div>
+        </div>
+        <dl class="release-meta">
+          <div><dt>Versão</dt><dd data-release-version>{{release.version}}</dd></div>
+          <div><dt>Lançamento</dt><dd data-release-date>{{release.dateLabel}}</dd></div>
+          <div><dt>Tamanho</dt><dd data-release-size>{{release.sizeLabel}}</dd></div>
+        </dl>
+        <div class="download-actions">
+          {{#if release.available}}
+          <a class="btn btn-primary btn-large" href="{{release.downloadUrl}}" data-release-download>{{icon:download}} Baixar Audra.dmg</a>
+          <span class="status" data-release-status data-state="available">Versão estável mais recente</span>
+          {{/if}}
+          {{#unless release.available}}
+          <a class="btn btn-primary btn-large" href="{{release.pageUrl}}" aria-disabled="true" data-release-download>{{icon:download}} Download em breve</a>
+          <span class="status" data-release-status data-state="unavailable">Ainda não há uma versão publicada</span>
+          {{/unless}}
+        </div>
+        <div class="download-links">
+          <a href="{{site.base}}versoes/">Histórico de versões</a>
+          <a href="{{site.repo}}/releases" rel="noopener">Todas as versões no GitHub</a>
+          <a href="{{site.repo}}" rel="noopener">Código-fonte</a>
+        </div>
+        <p class="checksum" data-release-checksum {{#unless release.sha256}}hidden{{/unless}}>SHA-256: <span data-release-sha>{{release.sha256}}</span></p>
+      </div>
+
+      <div class="side-cards">
+        <div class="side-card" data-reveal style="--delay:.06s">
+          <h3>Requisitos</h3>
+          <ul class="requirements">
+            <li>{{icon:laptop}}<span><strong>{{site.minimumOS}}</strong> ou posterior</span></li>
+            <li>{{icon:cpu}}<span>Mac com <strong>Apple Silicon</strong> (M1 ou mais recente)</span></li>
+            <li>{{icon:sparkles}}<span>Apple Intelligence ativado, para gerar resumos no dispositivo (opcional)</span></li>
+            <li>{{icon:globe}}<span>Internet apenas no primeiro uso de cada idioma, para o macOS baixar o modelo de fala</span></li>
+          </ul>
+        </div>
+        <div class="side-card" data-reveal style="--delay:.12s">
+          <h3>Instalação</h3>
+          <ol class="install">
+            <li><span>Abra o arquivo <strong>Audra.dmg</strong> baixado.</span></li>
+            <li><span>Arraste o <strong>Audra</strong> para a pasta <strong>Aplicativos</strong>.</span></li>
+            <li><span>Abra o Audra. Se o macOS bloquear, vá em <strong>Ajustes do Sistema › Privacidade e Segurança</strong> e clique em <strong>Abrir Mesmo Assim</strong>.</span></li>
+          </ol>
+          <p class="notice"><strong>Por que o aviso?</strong> Esta versão ainda não é assinada nem notarizada pela Apple, porque o projeto não tem um certificado de desenvolvedor. O código é aberto e pode ser conferido no GitHub.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container">
+    <div class="section-head center" data-reveal>
+      <p class="eyebrow">Perguntas frequentes</p>
+      <h2 class="h2" id="faq-title">Dúvidas comuns.</h2>
+    </div>
+    <div class="faq" data-reveal>
+      <details>
+        <summary>O que é o Audra? <span class="chev">{{icon:plus}}</span></summary>
+        <div class="answer"><p>O Audra é um aplicativo para macOS que transcreve vídeos e áudios, gera resumos com inteligência artificial e permite editar o vídeo com uma timeline de várias faixas ou diretamente pelo texto transcrito.</p></div>
+      </details>
+      <details>
+        <summary>O aplicativo é gratuito? <span class="chev">{{icon:plus}}</span></summary>
+        <div class="answer"><p>Sim. O Audra é gratuito e de código aberto, distribuído sob a <a href="{{site.base}}licenca/">licença MIT</a>. Não há assinatura, cadastro ou anúncios. Se você optar por usar o Claude para gerar resumos, o uso da API é cobrado pela Anthropic na sua conta.</p></div>
+      </details>
+      <details>
+        <summary>Quais versões do macOS são compatíveis? <span class="chev">{{icon:plus}}</span></summary>
+        <div class="answer"><p>O Audra exige o <strong>{{site.minimumOS}}</strong> ou posterior, em um Mac com Apple Silicon. Ele usa tecnologias introduzidas no macOS 26, como o novo reconhecimento de fala no dispositivo. Para os resumos, o Apple Intelligence precisa estar disponível e ativado.</p></div>
+      </details>
+      <details>
+        <summary>Como instalar? <span class="chev">{{icon:plus}}</span></summary>
+        <div class="answer"><p>Baixe o arquivo <code>Audra.dmg</code>, abra-o e arraste o Audra para a pasta Aplicativos. Como esta versão ainda não é notarizada pela Apple, na primeira abertura o macOS pode bloquear o app: vá em Ajustes do Sistema › Privacidade e Segurança e clique em “Abrir Mesmo Assim”.</p></div>
+      </details>
+      <details>
+        <summary>Como funciona a transcrição? <span class="chev">{{icon:plus}}</span></summary>
+        <div class="answer"><p>O Audra extrai o áudio do vídeo e usa o reconhecimento de fala do próprio macOS (SpeechAnalyzer), que roda no seu Mac. O idioma é detectado automaticamente, com prioridade para o português do Brasil, ou pode ser escolhido nos Ajustes. A precisão depende da qualidade do áudio, e qualquer trecho pode ser corrigido manualmente.</p></div>
+      </details>
+      <details>
+        <summary>É necessário ter conexão com a internet? <span class="chev">{{icon:plus}}</span></summary>
+        <div class="answer"><p>Não para o uso normal. A internet só é necessária na primeira vez em que um idioma é usado, para o macOS baixar o modelo de fala correspondente, e caso você escolha gerar resumos com o Claude. Transcrição, resumo com Apple Intelligence, edição e exportação funcionam offline.</p></div>
+      </details>
+      <details>
+        <summary>Quais formatos são suportados? <span class="chev">{{icon:plus}}</span></summary>
+        <div class="answer">
+          <p><strong>Importação:</strong> MP4, MOV, M4V e áudios como M4A, MP3, WAV, AIFF e CAF. MKV, WebM, AVI e similares também funcionam se o <a href="https://ffmpeg.org" rel="noopener">FFmpeg</a> estiver instalado no Mac.</p>
+          <p><strong>Exportação:</strong> vídeo em MP4 ou MOV (H.264 ou HEVC), áudio em M4A, transcrição em TXT, Markdown ou SRT e resumo em Markdown ou PDF.</p>
+        </div>
+      </details>
+      <details>
+        <summary>Como atualizar o aplicativo? <span class="chev">{{icon:plus}}</span></summary>
+        <div class="answer"><p>Baixe a versão mais recente nesta página e substitua o app na pasta Aplicativos. Suas transcrições e projetos ficam guardados separadamente e são preservados. O <a href="{{site.base}}versoes/">histórico de versões</a> mostra o que mudou em cada atualização.</p></div>
+      </details>
+      <details>
+        <summary>Como reportar problemas? <span class="chev">{{icon:plus}}</span></summary>
+        <div class="answer"><p>Abra uma issue no <a href="{{site.repo}}/issues" rel="noopener">GitHub</a> descrevendo o que aconteceu, a versão do Audra (em Ajustes › Sobre) e a versão do macOS. Não anexe vídeos ou transcrições com informações pessoais.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="container" aria-labelledby="cta-title">
+  <div class="cta" data-reveal>
+    <img src="{{site.base}}assets/img/app-icon-256.png" width="88" height="88" alt="">
+    <h2 class="h2 gradient-text" id="cta-title">Seu próximo vídeo começa pelo texto.</h2>
+    <p class="lead">Transcreva, resuma e edite em um só lugar, com a privacidade de quem trabalha no próprio Mac.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-large" href="#download">{{icon:apple}} Baixar para macOS</a>
+      <a class="btn btn-secondary btn-large" href="{{site.repo}}" rel="noopener">{{icon:github}} Ver no GitHub</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{page.title}}</title>
+  <meta name="description" content="{{page.description}}">
+  <meta name="robots" content="{{page.robots}}">
+  <meta name="theme-color" content="#070609">
+  <link rel="canonical" href="{{page.url}}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Audra">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="{{page.title}}">
+  <meta property="og:description" content="{{page.description}}">
+  <meta property="og:url" content="{{page.url}}">
+  <meta property="og:image" content="{{page.ogImage}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Audra: editor com transcrição, legendas e timeline no macOS">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{page.title}}">
+  <meta name="twitter:description" content="{{page.description}}">
+  <meta name="twitter:image" content="{{page.ogImage}}">
+
+  <link rel="icon" href="{{site.base}}favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="{{site.base}}favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="{{site.base}}apple-touch-icon.png">
+  <link rel="stylesheet" href="{{site.base}}assets/css/site.css">
+  <script>document.documentElement.classList.add("js")</script>
+  <script type="application/ld+json">{{{jsonld}}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  {{> header}}
+  <main id="conteudo">
+{{{body}}}
+  </main>
+  {{> footer}}
+  <script id="release-data" type="application/json">{{{releaseJSON}}}</script>
+  <script src="{{site.base}}assets/js/site.js" defer></script>
+</body>
+</html>
