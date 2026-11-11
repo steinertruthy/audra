@@ -1,0 +1,104 @@
+# Builds release artifacts when a version tag (vMAJOR.MINOR.PATCH) is pushed and creates a DRAFT release.
+# A maintainer reviews the draft on GitHub and publishes it; publishing triggers the website update.
+#
+# Optional code signing / notarization (all four secrets are required to enable it):
+#   MACOS_CERTIFICATE_P12        base64 of a "Developer ID Application" .p12
+#   MACOS_CERTIFICATE_PASSWORD   password of the .p12
+#   MACOS_SIGNING_IDENTITY       e.g. "Developer ID Application: Name (TEAMID)"
+#   NOTARY_APPLE_ID / NOTARY_TEAM_ID / NOTARY_PASSWORD (app-specific password) for notarization
+name: Release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-26
+    env:
+      HAS_CERT: ${{ secrets.MACOS_CERTIFICATE_P12 != '' && secrets.MACOS_SIGNING_IDENTITY != '' }}
+      HAS_NOTARY: ${{ secrets.NOTARY_APPLE_ID != '' && secrets.MACOS_SIGNING_IDENTITY != '' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validar tag, VERSION e CHANGELOG
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          VERSION="$(tr -d '[:space:]' < VERSION)"
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "::error::Tag fora do padrão SemVer: $TAG"; exit 1; }
+          [[ "$TAG" == "v$VERSION" ]] || { echo "::error::A tag $TAG não corresponde ao arquivo VERSION ($VERSION)"; exit 1; }
+          grep -q "^## \[$VERSION\]" CHANGELOG.md || { echo "::error::CHANGELOG.md não tem a seção [$VERSION]"; exit 1; }
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || { echo "::error::A tag deve apontar para um commit da main"; exit 1; }
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - name: Selecionar Xcode 26
+        run: sudo xcode-select -s "$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)"
+
+      - name: Testes
+        run: swift test --package-path app
+
+      - name: Importar certificado (opcional)
+        if: env.HAS_CERT == 'true'
+        env:
+          P12: ${{ secrets.MACOS_CERTIFICATE_P12 }}
+          P12_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+        run: |
+          KEYCHAIN="$RUNNER_TEMP/signing.keychain-db"
+          security create-keychain -p "" "$KEYCHAIN"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN"
+          security unlock-keychain -p "" "$KEYCHAIN"
+          echo "$P12" | base64 --decode > "$RUNNER_TEMP/cert.p12"
+          security import "$RUNNER_TEMP/cert.p12" -k "$KEYCHAIN" -P "$P12_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" "$KEYCHAIN"
+          security list-keychains -d user -s "$KEYCHAIN" $(security list-keychains -d user | tr -d '"')
+          rm "$RUNNER_TEMP/cert.p12"
+
+      - name: Compilar Audra.app
+        env:
+          BUILD_NUMBER: ${{ github.run_number }}
+          CODESIGN_IDENTITY: ${{ env.HAS_CERT == 'true' && secrets.MACOS_SIGNING_IDENTITY || '-' }}
+        run: scripts/build-app.sh
+
+      - name: Configurar notarização (opcional)
+        if: env.HAS_NOTARY == 'true'
+        env:
+          NOTARY_APPLE_ID: ${{ secrets.NOTARY_APPLE_ID }}
+          NOTARY_TEAM_ID: ${{ secrets.NOTARY_TEAM_ID }}
+          NOTARY_PASSWORD: ${{ secrets.NOTARY_PASSWORD }}
+        run: |
+          xcrun notarytool store-credentials audra-notary --apple-id "$NOTARY_APPLE_ID" --team-id "$NOTARY_TEAM_ID" --password "$NOTARY_PASSWORD"
+          echo "NOTARY_PROFILE=audra-notary" >> "$GITHUB_ENV"
+
+      - name: Gerar DMG e checksum
+        env:
+          CODESIGN_IDENTITY: ${{ env.HAS_CERT == 'true' && secrets.MACOS_SIGNING_IDENTITY || '' }}
+        run: scripts/make-dmg.sh
+
+      - name: Notas da versão
+        run: |
+          awk -v v="$VERSION" '$0 ~ "^## \\[" v "\\]" {f=1; next} /^## \[/{f=0} f' CHANGELOG.md | sed -e '/^\[.*\]: http/d' > notes.md
+          {
+            echo
+            echo "---"
+            echo
+            echo "**Instalação:** abra o \`Audra.dmg\` e arraste o Audra para Aplicativos. Requer macOS 26 (Tahoe) em um Mac com Apple Silicon."
+            if [[ "$HAS_NOTARY" != "true" ]]; then
+              echo "Esta versão não é notarizada pela Apple: na primeira abertura, vá em Ajustes do Sistema › Privacidade e Segurança e clique em “Abrir Mesmo Assim”."
+            fi
+            echo
+            echo "**SHA-256** (\`Audra.dmg\`): \`$(cut -d' ' -f1 build/release/Audra.dmg.sha256)\`"
+          } >> notes.md
+
+      - name: Criar release em rascunho
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" --draft --verify-tag \
+            --title "Audra $VERSION" --notes-file notes.md \
+            build/release/Audra.dmg build/release/Audra.dmg.sha256
+          echo "Rascunho criado. Revise e publique em: https://github.com/${{ github.repository }}/releases"

@@ -1,0 +1,80 @@
+# Validates every push and pull request: the macOS app, the website and the commit convention.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  app:
+    name: App (build e testes)
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # build number = commit count
+
+      - name: Selecionar Xcode 26
+        run: |
+          XCODE="$(ls -d /Applications/Xcode_26*.app | sort -V | tail -1)"
+          echo "Usando $XCODE"
+          sudo xcode-select -s "$XCODE"
+          swift --version
+
+      - name: Compilar e testar
+        run: swift test --package-path app
+
+      - name: Montar Audra.app e DMG
+        run: |
+          scripts/build-app.sh
+          scripts/make-dmg.sh
+
+      - name: Guardar DMG de teste
+        uses: actions/upload-artifact@v4
+        with:
+          name: Audra-${{ github.sha }}
+          path: build/release/
+          retention-days: 7
+
+  website:
+    name: Site (build e verificação)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build
+        run: node website/build.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verificar links, metadados e acessibilidade básica
+        run: node website/check.mjs
+
+  conventions:
+    name: Convenções
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: VERSION segue SemVer e está no CHANGELOG
+        run: |
+          VERSION="$(tr -d '[:space:]' < VERSION)"
+          [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "::error::VERSION inválido: $VERSION"; exit 1; }
+          grep -q "^## \[$VERSION\]" CHANGELOG.md || { echo "::error::CHANGELOG.md não tem a seção [$VERSION]"; exit 1; }
+      - name: Título do PR segue Conventional Commits
+        if: github.event_name == 'pull_request'
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if [[ ! "$TITLE" =~ ^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9-]+\))?!?:\ .+ ]]; then
+            echo "::error::O título do PR deve seguir Conventional Commits, por exemplo: feat(editor): adicionar transição de zoom"
+            exit 1
+          fi

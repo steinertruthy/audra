@@ -1,0 +1,36 @@
+name: Reportar um problema
+description: Algo não funciona como esperado no Audra.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Obrigado por ajudar a melhorar o Audra. **Não anexe vídeos, áudios ou transcrições com informações pessoais.**"
+  - type: textarea
+    id: what
+    attributes:
+      label: O que aconteceu?
+      description: Descreva o problema e o que você esperava que acontecesse.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Como reproduzir
+      placeholder: "1. Importei um vídeo MP4 de 10 minutos\n2. …"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versão do Audra
+      description: Em Ajustes › Sobre.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: macos
+    attributes:
+      label: Versão do macOS e modelo do Mac
+      placeholder: "macOS 26.1, MacBook Air M2"
+    validations:
+      required: true

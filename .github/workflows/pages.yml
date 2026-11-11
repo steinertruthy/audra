@@ -1,0 +1,60 @@
+# Builds the website and publishes it to GitHub Pages.
+# Runs when the site, the changelog or the version change on main, and whenever a release is published,
+# so the download area always shows the latest stable version.
+name: Site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "website/**"
+      - "CHANGELOG.md"
+      - "VERSION"
+      - "LICENSE"
+      - ".github/workflows/pages.yml"
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - id: pages
+        uses: actions/configure-pages@v5
+      - name: Build
+        run: node website/build.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Base URL from the Pages settings (project page or custom domain).
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+      - name: Verificar
+        run: node website/check.mjs
+        env:
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: website/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
