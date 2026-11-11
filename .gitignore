@@ -1,0 +1,24 @@
+# Build output
+.build/
+build/
+website/dist/
+DerivedData/
+.swiftpm/
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+
+# Tooling
+node_modules/
+.claude/
+
+# macOS
+.DS_Store
+
+# Secrets — never commit credentials
+.env
+.env.*
+*.p12
+*.cer
+*.mobileprovision
+*.provisionprofile
+AuthKey_*.p8
